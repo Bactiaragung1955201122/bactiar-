@@ -1,0 +1,38 @@
+Cara masuk ke Server MySQL:
+1. Via server / PC:
+   mysql -unamauser -p
+2. via client :
+   mysql -unamauser -p -hip.add.rres.ss
+   contoh : mysql -uroot -p -h192.168.1.155
+Cara mendapatkan ipaddress:
+1. ping namadomain atau ping alamatip
+   contoh : ping umb.ac.id
+            ping 192.168.1.155
+2. ipconfig / ifconfig (untuk di pc yang dicek)
+3. nslookup 
+
+Membuat Akun Server MySQL:
+create user namauser@`lokasi`;
+contoh :
+create user adminlab64@`%`;
+artinya : buat user server mysql dengan nama
+          adminlab64 yang dapat diakses di semua pc
+		  yang terkoneksi.
+
+1. Melihat daftar akun di server MySQL:
+select user,password,host from mysql.user;
+
+2. Membuat password untuk akun server MySQL:
+set password for namauser@`lokasi` = password('passwordnya');
+
+3. Melihat User aktif dan hak aksesnya :
+   SHOW GRANTS;
+4. Melihat tipe-tipe hak akses user :
+  select * from information_schema.user_privileges;
+5. Memberi hak / privileges pada suatu user :
+   GRANT ALL PRIVILEGES ON *.* TO adminlab64@`%`;
+   artinya:
+   Beri semua hak atas semua database dan semua tabelnya kepada user bernama adminlab64@`%`
+6. Mencabut hak atas user:
+  revoke all privileges on *.* from adminlab64@`%`;
+  artinya : cabut semua hak atas semua database dan semua tabel dari user bernama adminlab64 dari semua lokasi akses.
